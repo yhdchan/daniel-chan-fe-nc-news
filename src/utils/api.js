@@ -1,11 +1,18 @@
 import axios from "axios";
 
-const articlesApi = axios.create({
+const newsApi = axios.create({
 	baseURL: "https://yhdc-ncnews.herokuapp.com/api"
 })
 
-export const getArticles = () => {
-	return articlesApi.get('/articles').then(({ data }) => {
+export const getArticles = (topic, author) => {
+	return newsApi.get('/articles', { params: { topic: topic, author: author } }).then(({ data }) => {
 		return data;
 	})
+}
+
+export const getTopics = () => {
+	return newsApi.get('/topics')
+		.then(({ data }) => {
+			return data;
+		})
 }
