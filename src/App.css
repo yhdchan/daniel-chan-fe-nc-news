@@ -33,15 +33,14 @@
   width:50vw
 }
 
-.articles-card:hover {
-  box-shadow: 0 0 8px 2px rgba(0, 140, 186, 0.5);
-}
-
-.articles-card > p {
+.articles-card > section {
   display: flex;
   flex-wrap: nowrap;
-  flex-direction: row;
   justify-content: space-between;
+}
+
+.articles-card:hover {
+  box-shadow: 0 0 8px 2px rgba(0, 140, 186, 0.5);
 }
 
 .topics-list {
@@ -65,4 +64,22 @@
 
 .subheader {
   text-transform: capitalize;
+}
+
+.single-article {
+  margin: 1em;
+  padding: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  width:50vw
+}
+
+.single-article > div {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.article-body{
+  text-align: justify;
 }

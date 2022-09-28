@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticles } from "../utils/api";
+import ArticleCard from "./ArticleCard";
 
 const SingleTopic = () => {
 	const [singleTopic, setSingleTopic] = useState([]);
@@ -23,23 +24,7 @@ const SingleTopic = () => {
 	return (
 		<main>
 			<h3 className="subheader">{topic}</h3>
-			<ul className="articles-list">
-				{singleTopic.map((article) => {
-					const date = new Date(article.created_at)
-					return (
-						<li className="articles-card" key={article.article_id}>
-							<h3>{article.title}</h3>
-							<p>
-								<span>Topic: {article.topic}</span>
-								<span>Author: {article.author}</span>
-								<span>Created at: {date.toLocaleString()}</span>
-							</p>
-							<p>Votes: {article.votes}</p>
-							<p>Reviews: {article.comment_count}</p>
-						</li>
-					)
-				})}
-			</ul>
+			<ArticleCard articles={singleTopic}/>
 		</main>
 	)
 }
