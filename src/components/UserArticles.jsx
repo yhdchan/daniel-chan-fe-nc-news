@@ -2,24 +2,29 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard";
 
-const Home = () => {
-	const [articles, setArticles] = useState([]);
+const UserArticle = ({ loggedInUser }) => {
+	const [userArticles, setUsersArticles] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		setIsLoading(true);
-		getArticles({})
+		getArticles({author: loggedInUser.username})
 			.then(({ articles }) => {
-				setArticles(articles);
+				setUsersArticles(articles)
 				setIsLoading(false);
 			})
-	}, []);
+	}, [loggedInUser.username]);
 
 	if (isLoading) {
 		return <p className="loading">Loading ...</p>
 	}
 
-	return <ArticleCard articles={articles} />
+	return (
+		<main>
+			<h3 className="subheader">Your Articles</h3>
+			<ArticleCard articles={userArticles}/>
+		</main>
+	)
 }
 
-export default Home;
+export default UserArticle;

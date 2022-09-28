@@ -1,8 +1,4 @@
-import { useContext } from "react";
-import { UserContext } from "../contexts/User";
-
-const Header = () => {
-	const { loggedInUser } = useContext(UserContext);
+const Header = ({loggedInUser}) => {
 	const firstName = loggedInUser.name.split(' ')[0];
 
 	return (
