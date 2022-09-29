@@ -21,14 +21,14 @@ export const getTopics = () => {
 export const getArticleById = (article_id) => {
 	return newsApi.get(`/articles/${article_id}`)
 		.then(({ data }) => {
-			return data
+			return data;
 		})
 }
 
 export const patchArticleVoteById = (article_id, voteUpdate) => {
 	return newsApi.patch(`/articles/${article_id}`, voteUpdate)
 		.then(({ data }) => {
-			return data
+			return data;
 		})
 }
 
@@ -37,4 +37,11 @@ export const getUsers = () => {
 		.then(({ data }) => {
 			return data;
 		})
+}
+
+export const getCommentsByArticleId = (article_id) => {
+	return newsApi.get(`/articles/${article_id}/comments`)
+	.then(({ data }) => {
+		return data;
+	})
 }

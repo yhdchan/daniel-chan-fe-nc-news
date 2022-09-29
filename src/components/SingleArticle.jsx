@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../utils/api";
+import Comments from "./Comments";
 import SingleArticleCard from "./SingleArticleCard";
 
 const SingleArticle = () => {
@@ -37,6 +38,7 @@ const SingleArticle = () => {
 	return (
 		<article>
 			<SingleArticleCard singleArticle={singleArticle} setSingleArticle={setSingleArticle}/>
+			<Comments singleArticle={singleArticle} />
 		</article>
 	)
 }
