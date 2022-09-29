@@ -7,6 +7,7 @@ const SingleArticle = () => {
 	const { article_id } = useParams();
 	const [singleArticle, setSingleArticle] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
+	const [err, setErr] = useState(null);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -15,7 +16,19 @@ const SingleArticle = () => {
 				setSingleArticle(article);
 				setIsLoading(false);
 			})
+			.catch((err) => {
+				setErr(err);
+			})
 	}, [article_id])
+	
+	if (err) {
+		return (
+			<div>
+				<h3>{err.response.status}</h3>
+				<h4>{err.response.data.msg}</h4>
+			</div>
+		)
+	}
 
 	if (isLoading) {
 		return <p className="loading">Loading ...</p>
@@ -23,7 +36,7 @@ const SingleArticle = () => {
 
 	return (
 		<article>
-			<SingleArticleCard singleArticle={singleArticle}/>
+			<SingleArticleCard singleArticle={singleArticle} setSingleArticle={setSingleArticle}/>
 		</article>
 	)
 }

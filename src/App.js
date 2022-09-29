@@ -9,21 +9,30 @@ import { useContext } from 'react';
 import { UserContext } from './contexts/User';
 import UserArticle from './components/UserArticles';
 import SingleArticle from './components/SingleArticle';
+import Footer from './components/Footer';
+import Users from './components/Users';
 
 function App() {
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
   return (
     <BrowserRouter>
       <div className="App">
-        <Header loggedInUser={loggedInUser}/>
-        <Nav loggedInUser={loggedInUser}/>
+        <header className='freeze-panel'>
+          <Header loggedInUser={loggedInUser}/>
+          <Nav loggedInUser={loggedInUser}/>
+        </header>
+        <section className='routes'>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/articles/topics' element={<Topics />}></Route>
             <Route path='/articles/topics/:topic' element={<SingleTopic />}></Route>
+            <Route path='/users' element={<Users />}></Route>
             <Route path={`/${loggedInUser.username}/articles`} element={<UserArticle loggedInUser={loggedInUser}/>}></Route>
             <Route path='/articles/:article_id' element={<SingleArticle />}></Route>
+            <Route path='*' element={<p>404 Not Found! api path does not exist!</p>}></Route>
           </Routes>
+        </section>
+        <Footer />
       </div>
     </BrowserRouter>
   );
