@@ -4,7 +4,7 @@ import { patchArticleVoteById } from "../utils/api";
 
 const LikeButton = ({ setSingleArticle, singleArticle, likes, setLikes }) => {
 	const { loggedInUser } = useContext(UserContext);
-	const [isLiked, setIsLiked] = useState(JSON.parse(localStorage.getItem(`${loggedInUser.username}_LIKE_STATE`)) || false);
+	const [isLiked, setIsLiked] = useState(JSON.parse(localStorage.getItem(`${loggedInUser.username}_${singleArticle.article_id}_LIKE_STATE`)) || false);
 	
 	const label = isLiked ? 'Liked' : 'Like';
 
@@ -32,7 +32,7 @@ const LikeButton = ({ setSingleArticle, singleArticle, likes, setLikes }) => {
 	};
 
 	useEffect(() => {
-    window.localStorage.setItem(`${loggedInUser.username}_LIKE_STATE`, JSON.stringify(isLiked));
+    window.localStorage.setItem(`${loggedInUser.username}_${singleArticle.article_id}_LIKE_STATE`, JSON.stringify(isLiked));
 	}, [isLiked, loggedInUser.username])
 
 	return (
