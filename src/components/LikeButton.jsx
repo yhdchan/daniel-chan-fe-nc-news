@@ -33,7 +33,7 @@ const LikeButton = ({ setSingleArticle, singleArticle, likes, setLikes }) => {
 
 	useEffect(() => {
     window.localStorage.setItem(`${loggedInUser.username}_${singleArticle.article_id}_LIKE_STATE`, JSON.stringify(isLiked));
-	}, [isLiked, loggedInUser.username])
+	}, [isLiked, loggedInUser.username, singleArticle.article_id])
 
 	return (
 		<button 
