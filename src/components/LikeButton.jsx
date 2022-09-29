@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../contexts/User";
 import { patchArticleVoteById } from "../utils/api";
 
 const LikeButton = ({ setSingleArticle, singleArticle, likes, setLikes }) => {
-	const [isLiked, setIsLiked] = useState(JSON.parse(localStorage.getItem('MY_LIKE_STATE')) || false);
-
+	const { loggedInUser } = useContext(UserContext);
+	const [isLiked, setIsLiked] = useState(JSON.parse(localStorage.getItem(`${loggedInUser.username}_LIKE_STATE`)) || false);
+	
 	const label = isLiked ? 'Liked' : 'Like';
 
 	const liked = () => {
@@ -30,8 +32,8 @@ const LikeButton = ({ setSingleArticle, singleArticle, likes, setLikes }) => {
 	};
 
 	useEffect(() => {
-    window.localStorage.setItem('MY_LIKE_STATE', JSON.stringify(isLiked));
-	}, [isLiked])
+    window.localStorage.setItem(`${loggedInUser.username}_LIKE_STATE`, JSON.stringify(isLiked));
+	}, [isLiked, loggedInUser.username])
 
 	return (
 		<button 
