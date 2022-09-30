@@ -1,10 +1,8 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../contexts/User";
+import { useState } from "react";
 import { postCommentsByArticleId } from "../utils/api";
 
-const CommentAdder = ({ article_id, comments, setComments, setCommentsCount }) => {
+const CommentAdder = ({ article_id, comments, setComments, setCommentsCount, loggedInUser }) => {
 	const [newComment, setNewComment] = useState('');
-	const { loggedInUser } = useContext(UserContext);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

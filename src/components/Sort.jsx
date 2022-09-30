@@ -2,11 +2,11 @@ const Sort = ({ setSortState, setOrderState }) => {
 	return (
 		<div className="sorting">
 			<div className="sort_by">
-				<label htmlFor="sort" className="uitk-field-label is-visually-hidden">Sort by: </label>
+				<label htmlFor="sort" className="field-label is-visually-hidden">Sort by: </label>
 				<select 
 					name="sort" 
 					id="sort" 
-					className="uitk-field-select"
+					className="field-select"
 					defaultValue={'created_at'}
 					onChange={(e) => setSortState(e.target.value)}
 				>
