@@ -1,4 +1,18 @@
-const CommentCard = ({ comments, commentsCount }) => {
+import { deleteCommentById } from "../utils/api";
+
+const CommentCard = ({ comments, setComments, commentsCount, setCommentsCount, loggedInUser }) => {
+	const deleteComment = (comment_id) => {
+		if (window.confirm('Are you sure that you want to remove this comment?')) {
+			deleteCommentById(comment_id)
+				.then(() => {
+					const updatedComments = comments.filter((comment) => comment.comment_id !== comment_id);
+					setComments(updatedComments);
+					setCommentsCount(updatedComments.length);
+					alert('Successfully deleted!')
+				})
+		}
+	};
+
 	return (
 		<div id="comment-card" className="comment-card">
 			<div className="comment-subheader">
@@ -7,7 +21,8 @@ const CommentCard = ({ comments, commentsCount }) => {
 			</div>
 			<ul className="comments-list">
 				{comments.map((comment) => {
-					const date = new Date(comment.created_at)
+					const date = new Date(comment.created_at);
+					const canDetele = loggedInUser.username === comment.author;
 					return (
 						<li key={comment.comment_id} className="comments-list-item" >
 							<p className="comment-author">{comment.author}</p>
@@ -26,7 +41,10 @@ const CommentCard = ({ comments, commentsCount }) => {
 										>&#xf165;</i>
 									</button>
 								</div>
-								<p>Created at: {date.toLocaleString()}</p>
+								<div>
+									<p>Created at: {date.toLocaleString()}</p>
+									{canDetele && <button className="comment-delete-button" onClick={() => deleteComment(comment.comment_id)}>Delete</button>}
+								</div>
 							</div>
 						</li>
 					);

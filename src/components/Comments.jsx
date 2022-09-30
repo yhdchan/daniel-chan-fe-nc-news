@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../contexts/User";
 import { getCommentsByArticleId } from "../utils/api";
 import CommentAdder from "./CommentAdder";
 import CommentCard from "./CommentCard";
@@ -7,6 +8,7 @@ const Comments = ({ singleArticle }) => {
 	const [comments, setComments] = useState([]);
 	const [commentsCount, setCommentsCount] =useState(singleArticle.comment_count);
 	const [isLoading, setIsLoading] = useState(true);
+	const { loggedInUser } = useContext(UserContext);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -23,8 +25,8 @@ const Comments = ({ singleArticle }) => {
 
 	return (
 		<section>
-			<CommentAdder article_id={singleArticle.article_id} comments={comments} setComments={setComments} setCommentsCount={setCommentsCount}/>
-			<CommentCard comments={comments} commentsCount={commentsCount}/>
+			<CommentAdder article_id={singleArticle.article_id} comments={comments} setComments={setComments} setCommentsCount={setCommentsCount} loggedInUser={loggedInUser}/>
+			<CommentCard comments={comments} setComments={setComments} commentsCount={commentsCount} setCommentsCount={setCommentsCount} loggedInUser={loggedInUser}/>
 		</section>
 	)
 }

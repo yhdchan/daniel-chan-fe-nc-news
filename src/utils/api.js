@@ -52,3 +52,10 @@ export const postCommentsByArticleId = (article_id, newComment) => {
 		return data;
 	})
 }
+
+export const deleteCommentById = (comment_id) => {
+	return newsApi.delete(`/comments/${comment_id}`)
+	.then(({ data }) => {
+		return data;
+	})
+}
