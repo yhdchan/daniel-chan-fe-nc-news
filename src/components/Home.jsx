@@ -2,24 +2,28 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard";
 
-const Home = () => {
+const Home = ({ sortState, orderState }) => {
 	const [articles, setArticles] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		setIsLoading(true);
-		getArticles({})
+		getArticles({ sort_by: sortState, order: orderState})
 			.then(({ articles }) => {
 				setArticles(articles);
 				setIsLoading(false);
 			})
-	}, []);
+	}, [sortState, orderState]);
 
 	if (isLoading) {
 		return <p className="loading">Loading ...</p>
 	}
 
-	return <ArticleCard articles={articles} />
+	return (
+		<main>
+			<ArticleCard articles={articles} />
+		</main>
+	)
 }
 
 export default Home;
