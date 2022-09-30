@@ -3,19 +3,19 @@ import { useParams } from "react-router-dom";
 import { getArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard";
 
-const SingleTopic = () => {
+const SingleTopic = ({ sortState, orderState }) => {
 	const [singleTopic, setSingleTopic] = useState([]);
 	const { topic } = useParams();
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		setIsLoading(true);
-		getArticles(topic)
+		getArticles({ topic: topic, sort_by: sortState, order: orderState})
 			.then(({ articles }) => {
 				setSingleTopic(articles);
 				setIsLoading(false);
 			})
-	}, [topic]);
+	}, [topic, sortState, orderState]);
 
 	if (isLoading) {
 		return <p className="loading">Loading ...</p>
