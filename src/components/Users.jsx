@@ -1,11 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/User";
+import { useEffect, useState } from "react";
 import { getUsers } from "../utils/api";
 
-const Users = () => {
+const Users = ({ setLoggedInUser }) => {
 	const [users, setUsers] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const { setLoggedInUser } =useContext(UserContext);
 
 	useEffect(() => {
 		setIsLoading(true);

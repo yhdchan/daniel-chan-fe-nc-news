@@ -7,8 +7,7 @@ const Nav = ({loggedInUser}) => {
 				<Link to='/'>Home</Link> |{" "}
 				<Link to='/articles/topics'>Topics</Link> |{" "}
 				<Link to='/users'>Users</Link> |{" "}
-				<Link to={`/${loggedInUser.username}/articles`}>Your Articles</Link> |{" "}
-				<Link to={`/${loggedInUser.username}/comments`}>Your Comments</Link>
+				<Link to={`/${loggedInUser.username}/articles`}>Your Articles</Link>
 			</nav>
 		</div>
 	)
