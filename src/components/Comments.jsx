@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { getCommentsByArticleId } from "../utils/api";
+import CommentAdder from "./CommentAdder";
 import CommentCard from "./CommentCard";
 
 const Comments = ({ singleArticle }) => {
 	const [comments, setComments] = useState([]);
+	const [commentsCount, setCommentsCount] =useState(singleArticle.comment_count);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
@@ -21,7 +23,8 @@ const Comments = ({ singleArticle }) => {
 
 	return (
 		<section>
-			<CommentCard comments={comments} comment_count={singleArticle.comment_count}/>
+			<CommentAdder article_id={singleArticle.article_id} comments={comments} setComments={setComments} setCommentsCount={setCommentsCount}/>
+			<CommentCard comments={comments} commentsCount={commentsCount}/>
 		</section>
 	)
 }
