@@ -7,6 +7,7 @@ const SingleTopic = ({ sortState, orderState }) => {
 	const [singleTopic, setSingleTopic] = useState([]);
 	const { topic } = useParams();
 	const [isLoading, setIsLoading] = useState(true);
+	const [err, setErr] = useState(null);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -15,7 +16,19 @@ const SingleTopic = ({ sortState, orderState }) => {
 				setSingleTopic(articles);
 				setIsLoading(false);
 			})
+			.catch((err) => {
+				setErr(err);
+			})
 	}, [topic, sortState, orderState]);
+
+	if (err) {
+		return (
+			<div>
+				<h3>Status: {err.response.status}</h3>
+				<h4>{err.response.data.msg}</h4>
+			</div>
+		)
+	}
 
 	if (isLoading) {
 		return <p className="loading">Loading ...</p>

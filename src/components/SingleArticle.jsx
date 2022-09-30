@@ -25,7 +25,7 @@ const SingleArticle = () => {
 	if (err) {
 		return (
 			<div>
-				<h3>{err.response.status}</h3>
+				<h3>Status: {err.response.status}</h3>
 				<h4>{err.response.data.msg}</h4>
 			</div>
 		)

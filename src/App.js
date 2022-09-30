@@ -29,11 +29,11 @@ function App() {
           <Sort setSortState={setSortState} setOrderState={setOrderState}/>
           <Routes>
             <Route path='/' element={<Home sortState={sortState} orderState={orderState}/>} />
+            <Route path='/articles/:article_id' element={<SingleArticle />}></Route>
             <Route path='/articles/topics' element={<Topics />}></Route>
             <Route path='/articles/topics/:topic' element={<SingleTopic sortState={sortState} orderState={orderState}/>}></Route>
-            <Route path='/users' element={<Users />}></Route>
+            <Route path='/users' element={<Users setLoggedInUser={setLoggedInUser}/>}></Route>
             <Route path={`/${loggedInUser.username}/articles`} element={<UserArticle loggedInUser={loggedInUser} sortState={sortState} orderState={orderState}/>}></Route>
-            <Route path='/articles/:article_id' element={<SingleArticle />}></Route>
             <Route path='*' element={<p>404 Not Found! api path does not exist!</p>}></Route>
           </Routes>
         </section>
