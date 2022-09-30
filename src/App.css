@@ -46,7 +46,8 @@
 }
 
 .articles-card {
-  width:50vw
+  width: 50vw;
+  padding: 0.5em;
 }
 
 .articles-card > section {
@@ -186,8 +187,6 @@
 }
 
 .comment-card {
-  margin: 1em;
-  padding: 1em;
   margin-left: auto;
   margin-right: auto;
   width:50vw
@@ -202,6 +201,7 @@
 }
 
 .comments-list-item {
+  width: 100%;
   padding: 0.5em;
   margin: 0.5em;
   background-color: #b8e9f8;
@@ -224,4 +224,23 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   align-content: center;
+}
+
+.comment-adder {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  padding: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  width:50vw;
+  gap: 0.5em;
+}
+
+#newComment {
+  height: 5vw;
+}
+
+.comment-adder > button {
+  align-self: flex-end;
 }

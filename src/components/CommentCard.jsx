@@ -1,9 +1,9 @@
-const CommentCard = ({ comments, comment_count }) => {
+const CommentCard = ({ comments, commentsCount }) => {
 	return (
-		<div className="comment-card">
+		<div id="comment-card" className="comment-card">
 			<div className="comment-subheader">
 				<p>Comments:</p>
-				<p>Total reviews: {comment_count}</p>
+				<p>Total reviews: {commentsCount}</p>
 			</div>
 			<ul className="comments-list">
 				{comments.map((comment) => {
