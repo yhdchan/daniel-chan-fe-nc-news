@@ -1,10 +1,13 @@
-const Header = ({loggedInUser}) => {
-	const firstName = loggedInUser.name.split(' ')[0];
+const Header = ({loggedInUser, isLoggedIn}) => {
+	let greetingName = 'Guest'
+	if (isLoggedIn) {
+		greetingName = loggedInUser.name.split(' ')[0];
+	}
 
 	return (
 		<header className="header">
 			<h1>Northcoders Newsboard</h1>
-			<h2>Welcome {firstName}!</h2>
+			<h2>Welcome {greetingName}!</h2>
 		</header>
 	)
 }

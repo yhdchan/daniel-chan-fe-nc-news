@@ -1,27 +1,15 @@
-import { useEffect, useState } from "react";
-import { getArticles } from "../utils/api";
-import ArticleCard from "./ArticleCard";
+import { useNavigate } from "react-router-dom";
 
-const Home = ({ sortState, orderState }) => {
-	const [articles, setArticles] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
-
-	useEffect(() => {
-		setIsLoading(true);
-		getArticles({ sort_by: sortState, order: orderState})
-			.then(({ articles }) => {
-				setArticles(articles);
-				setIsLoading(false);
-			})
-	}, [sortState, orderState]);
-
-	if (isLoading) {
-		return <p className="loading">Loading ...</p>
+const Home = () => {
+	let navigate = useNavigate();
+	const handleClick = () => {
+		navigate(`/articles`);
 	}
 
 	return (
-		<main>
-			<ArticleCard articles={articles} />
+		<main className="home_page">
+			<img src="https://cdn.pixabay.com/photo/2015/10/05/18/10/newspaper-973049_1280.jpg" alt="news" className="responsive"></img>
+			<button className="enter-button" onClick={handleClick}>Enter</button>
 		</main>
 	)
 }

@@ -1,43 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticles } from "../utils/api";
-import ArticleCard from "./ArticleCard";
+import DisplayTopicArticles from "./DisplayTopicArticles";
+import Sort from "./Sort";
 
-const SingleTopic = ({ sortState, orderState }) => {
-	const [singleTopic, setSingleTopic] = useState([]);
+const SingleTopic = () => {
 	const { topic } = useParams();
-	const [isLoading, setIsLoading] = useState(true);
-	const [err, setErr] = useState(null);
-
-	useEffect(() => {
-		setIsLoading(true);
-		getArticles({ topic: topic, sort_by: sortState, order: orderState})
-			.then(({ articles }) => {
-				setSingleTopic(articles);
-				setIsLoading(false);
-			})
-			.catch((err) => {
-				setErr(err);
-			})
-	}, [topic, sortState, orderState]);
-
-	if (err) {
-		return (
-			<div>
-				<h3>Status: {err.response.status}</h3>
-				<h4>{err.response.data.msg}</h4>
-			</div>
-		)
-	}
-
-	if (isLoading) {
-		return <p className="loading">Loading ...</p>
-	}
+	const [sortState, setSortState] = useState(null);
+  const [orderState, setOrderState] =useState(null);
 
 	return (
 		<main>
-			<h3 className="subheader">{topic}</h3>
-			<ArticleCard articles={singleTopic}/>
+			<Sort setSortState={setSortState} setOrderState={setOrderState}/>
+			<DisplayTopicArticles topic={topic} sortState={sortState} orderState={orderState}/>
 		</main>
 	)
 }

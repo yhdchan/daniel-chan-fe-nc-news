@@ -6,7 +6,7 @@ const ArticleCard = ({ articles }) => {
 		const article_id = event.target.value;
 		const path = `/articles/${article_id}`;
 		navigate(path);
-	}
+	};
 
 	return (
 		<div>
@@ -26,7 +26,7 @@ const ArticleCard = ({ articles }) => {
 							</section>
 							<section>
 								<p>Reviews: {article.comment_count}</p>
-								<button value={article.article_id}onClick={handleClick}>Read Me</button>
+								<button className="read-me-button" value={article.article_id}onClick={handleClick}><span>Read Me</span></button>
 							</section>
 						</li>
 					)
