@@ -252,6 +252,10 @@ span {
   justify-content: space-between;
 }
 
+.comment-subheader > p {
+  font-weight: bold;
+}
+
 .comment-author {
   display: flex;
   flex-wrap: nowrap;

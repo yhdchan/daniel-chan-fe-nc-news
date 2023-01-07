@@ -32,7 +32,7 @@ const ArticleCard = ({ articles }) => {
                   value={article.article_id}
                   onClick={handleClick}
                 >
-                  <span>Read Me</span>
+                  Read Me
                 </button>
               </section>
             </li>
